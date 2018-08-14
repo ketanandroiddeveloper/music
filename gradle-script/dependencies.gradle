@@ -1,0 +1,96 @@
+ext{
+    compileVersion = 27
+    minVersion = 21
+    targetVersion = 27
+
+    //Version
+    retrofitVersion = '2.1.0'
+    retrofitConverterScalar = '2.0.0'
+    retrofitJakeWhartonVersion = '1.0.0'
+    rxJavaVersion = '2.0.1'
+    okHttpVersion = '3.4.1'
+    gsonVersion = '2.6.2'
+    supportLibsVersionRoot = '27.1.0'
+    constraintVersion = '1.1.0'
+    lifecycleVersion = '1.1.1'
+    googlePlayServicesVersion = '15.0.0'
+    daggerVersion = '2.14.1'
+
+
+
+  /*  daggerVersion = "2.13"
+    architectureComponentsVersion = "1.0.0"*/
+
+    //packages com.jakewharton.retrofit
+    retrofitPackage = 'com.squareup.retrofit2'
+    retrofitJakeWharton ='com.jakewharton.retrofit'
+    rxJavaPackage = 'io.reactivex.rxjava2'
+    okHttpPackage = 'com.squareup.okhttp3'
+    gsonPackage = 'com.google.code.gson'
+    supportPackage = 'com.android.support'
+    constraintPackage='com.android.support.constraint'
+    lifecyclePackage = 'android.arch.lifecycle'
+    googlePlayServicesPackage = 'com.google.android.gms'
+    daggerPackage = 'com.google.dagger'
+
+    BASE_URL = "\"http://musicbrainz.org/ws/2/\""
+
+    supportDependency = [
+            recyclerview : buildDependency(supportPackage,'recyclerview-v7',supportLibsVersionRoot),
+            appcompat   :  buildDependency(supportPackage,'appcompat-v7',supportLibsVersionRoot),
+            design   :  buildDependency(supportPackage,'design',supportLibsVersionRoot),
+            support   :  buildDependency(supportPackage,'support-v4',supportLibsVersionRoot),
+            cardview   :  buildDependency(supportPackage,'cardview-v7',supportLibsVersionRoot),
+            palette   :  buildDependency(supportPackage,'palette-v7',supportLibsVersionRoot)
+    ]
+
+    constraintDependency = [
+            constrain : buildDependency(constraintPackage,'constraint-layout',constraintVersion)
+    ]
+
+    lifecycleDependency =[
+            compiler : buildDependency(lifecyclePackage,'compiler',lifecycleVersion),
+            livedata : buildDependency(lifecyclePackage,'livedata',lifecycleVersion),
+            viewmodel : buildDependency(lifecyclePackage,'viewmodel',lifecycleVersion),
+            extensions : buildDependency(lifecyclePackage,'extensions',lifecycleVersion),
+    ]
+    daggerDependency = [
+            dagger : buildDependency(daggerPackage,'dagger',daggerVersion),
+            daggerCompiler : buildDependency(daggerPackage,'dagger-compiler',daggerVersion),
+            daggerAndroid : buildDependency(daggerPackage,'dagger-android',daggerVersion),
+            daggerAndroidSupport : buildDependency(daggerPackage,'dagger-android-support',daggerVersion),
+            daggerAndroidCompiler : buildDependency(daggerPackage,'dagger-android-processor',daggerVersion)
+    ]
+
+    googlePlayServicesDependency = [
+            maps : buildDependency(googlePlayServicesPackage,'play-services-maps',googlePlayServicesVersion),
+            location : buildDependency(googlePlayServicesPackage,'play-services-location',googlePlayServicesVersion),
+            places : buildDependency(googlePlayServicesPackage,'play-services-places',googlePlayServicesVersion)
+    ]
+
+    retrofitDependencies = [
+            retrofit : buildDependency(retrofitPackage,'retrofit',retrofitVersion),
+            gson : buildDependency(retrofitPackage,'converter-gson',retrofitVersion),
+            scalar : buildDependency(retrofitPackage,'converter-scalars',retrofitConverterScalar),
+            jakewharton : buildDependency(retrofitJakeWharton,'retrofit2-rxjava2-adapter',retrofitJakeWhartonVersion)
+    ]
+
+    okHttpDependencies =  [
+            logginInterceptor : buildDependency(okHttpPackage,'logging-interceptor',okHttpVersion),
+            okHttp : buildDependency(okHttpPackage,'okhttp',okHttpVersion)
+    ]
+
+    rxJavaDependencies = [
+            rxJava : buildDependency(rxJavaPackage,'rxjava',rxJavaVersion),
+            rxJavaAndroid : buildDependency(rxJavaPackage,'rxandroid',rxJavaVersion)
+    ]
+
+    gsonDependency = [
+            gson : buildDependency(gsonPackage,'gson',gsonVersion)
+    ]
+
+
+}
+static String buildDependency(String pack,String dependency,String version){
+    return  "${pack}:${dependency}:${version}"
+}

@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion compileVersion
+    defaultConfig {
+        applicationId "com.ketan.musicbrainzapp"
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildTypes.each {
+        it.buildConfigField 'String', 'BASE_URL', BASE_URL
+    }
+    dataBinding {
+        enabled = false
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation supportDependency.appcompat
+    implementation supportDependency.design
+    implementation supportDependency.support
+    implementation supportDependency.recyclerview
+    implementation supportDependency.palette
+    implementation supportDependency.cardview
+    implementation constraintDependency.constrain
+    implementation googlePlayServicesDependency.maps
+    implementation googlePlayServicesDependency.location
+    implementation googlePlayServicesDependency.places
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    //dagger 2
+    implementation daggerDependency.dagger
+    annotationProcessor daggerDependency.daggerCompiler
+    //to enable DaggerActivity, DaggerBroadcastReceiver, DaggerFragment etc classes
+    implementation daggerDependency.daggerAndroid
+    annotationProcessor daggerDependency.daggerAndroidCompiler
+    //support libraries with dagger 2
+    implementation daggerDependency.daggerAndroidSupport
+    kapt 'com.google.dagger:dagger-compiler:2.11'
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    //API services related
+    implementation retrofitDependencies.retrofit
+    implementation retrofitDependencies.jakewharton
+    implementation retrofitDependencies.gson
+    implementation retrofitDependencies.scalar
+    implementation rxJavaDependencies.rxJava
+    implementation rxJavaDependencies.rxJavaAndroid
+    implementation gsonDependency.gson
+    implementation okHttpDependencies.logginInterceptor
+    implementation okHttpDependencies.okHttp
+    implementation('com.squareup.retrofit2:retrofit:2.1.0') {
+        // exclude Retrofit’s OkHttp dependency module and define your own module import
+        exclude module: 'okhttp'
+    }
+    implementation lifecycleDependency.extensions
+    implementation lifecycleDependency.viewmodel
+    implementation lifecycleDependency.livedata
+    annotationProcessor lifecycleDependency.compiler
+    // Required -- JUnit 4 framework
+}
+kapt {
+    generateStubs = true
+}
